@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.IO;
-using System.Linq;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Abstractions;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Microsoft.AspNetCore.Mvc.ApplicationParts;
@@ -12,7 +7,11 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.SwaggerGen;
-using TwentyFive.Core.Entities;
+using System;
+using System.Collections.Generic;
+using System.Globalization;
+using System.IO;
+using System.Linq;
 
 namespace QD.Swagger.Extensions
 {
@@ -25,9 +24,9 @@ namespace QD.Swagger.Extensions
     /// </remarks>
     public class ConfigureSwaggerOptions : IConfigureOptions<SwaggerGenOptions>
     {
-        readonly Action<SwaggerGenOptions> _additionalOptions;
-        readonly ApplicationPartManager _partManager;
-        readonly IApiVersionDescriptionProvider _provider;
+        private readonly Action<SwaggerGenOptions> _additionalOptions;
+        private readonly ApplicationPartManager _partManager;
+        private readonly IApiVersionDescriptionProvider _provider;
 
         /// <summary>
         ///     Initializes a new instance of the <see cref="ConfigureSwaggerOptions" /> class.
@@ -73,7 +72,6 @@ namespace QD.Swagger.Extensions
 
             IncludeXml(options, "QD.Swagger.Extensions");
 
-
             foreach (var applicationPart in _partManager.ApplicationParts.Select(x => x.Name).Distinct())
             {
                 IncludeXml(options, applicationPart);
@@ -109,23 +107,10 @@ namespace QD.Swagger.Extensions
 
             options.OperationFilter<SwaggerDefaultValues>();
 
-            options.MapType<LocateString>(
-                () => new OpenApiSchema
-                {
-                    Type = "object",
-                    Properties = new Dictionary<string, OpenApiSchema>
-                    {
-                        ["vi"] = new OpenApiSchema { Type = "string" },
-                        ["en"] = new OpenApiSchema { Type = "string" }
-                    },
-                    Description = "LocateString",
-                    Required = new SortedSet<string> { "vi" }
-                });
-
             _additionalOptions?.Invoke(options);
         }
 
-        static void IncludeXml(SwaggerGenOptions options, string applicationPart)
+        private static void IncludeXml(SwaggerGenOptions options, string applicationPart)
         {
             var xmlFile = $"{applicationPart}.xml";
             var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
@@ -133,7 +118,7 @@ namespace QD.Swagger.Extensions
                 options.IncludeXmlComments(xmlPath);
         }
 
-        static OpenApiInfo CreateInfoForApiVersion(ApiVersionDescription description)
+        private static OpenApiInfo CreateInfoForApiVersion(ApiVersionDescription description)
         {
             var info = new OpenApiInfo
             {

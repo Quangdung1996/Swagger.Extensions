@@ -5,7 +5,6 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using Swashbuckle.AspNetCore.SwaggerGen;
 using System;
-using TwentyFive.Core;
 
 namespace QD.Swagger.Extensions
 {
@@ -37,7 +36,6 @@ namespace QD.Swagger.Extensions
 
             services.Configure<MvcOptions>(options => { });
 
-            services.Configure<LanguageSettings>(settings => { settings.SupportLanguages = new[] { "vi", "en" }; });
             services.AddControllers()
                   .AddNewtonsoftJson();
         }
