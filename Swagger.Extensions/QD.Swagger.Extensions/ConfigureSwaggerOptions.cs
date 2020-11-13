@@ -61,7 +61,7 @@ namespace QD.Swagger.Extensions
                     var groupName = (apiDescription.ActionDescriptor.EndpointMetadata.FirstOrDefault(x => x.GetType() == typeof(ApiExplorerSettingsAttribute)) as ApiExplorerSettingsAttribute)?.GroupName;
 
                     if (groupName == null)
-                        return documentName.StartsWith("Central");
+                        return documentName.StartsWith("BQD");
 
                     if (actionApiVersionModel.DeclaredApiVersions.Any())
                         return actionApiVersionModel.DeclaredApiVersions.Any(
