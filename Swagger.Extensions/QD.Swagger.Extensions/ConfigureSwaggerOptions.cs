@@ -106,6 +106,7 @@ namespace QD.Swagger.Extensions
             options.EnableAnnotations();
 
             options.OperationFilter<SwaggerDefaultValues>();
+            options.OperationFilter<SwaggerUploadFileFilter>();
 
             _additionalOptions?.Invoke(options);
         }
