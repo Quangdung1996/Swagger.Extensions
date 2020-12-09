@@ -5,9 +5,12 @@
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Authors>Dung Bui</Authors>
     <Copyright>Copyright (c) All rights reserved.</Copyright>
-    <AssemblyVersion>1.0.1.0</AssemblyVersion>
-    <FileVersion>1.0.1.0</FileVersion>
-    <Version>1.0.1</Version>
+    <AssemblyVersion>1.0.6.0</AssemblyVersion>
+    <FileVersion>1.0.6.0</FileVersion>
+    <Version>1.0.6</Version>
+    <RepositoryUrl>https://github.com/Quangdung1996/Swagger.Extensions</RepositoryUrl>
+    <RepositoryType>C#</RepositoryType>
+    <PackageProjectUrl>https://github.com/Quangdung1996/Swagger.Extensions</PackageProjectUrl>
   </PropertyGroup>
 
   <ItemGroup>

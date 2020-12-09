@@ -13,7 +13,12 @@ namespace QD.Swagger.Extensions
         public static IApplicationBuilder UseSwaggerForApiDocs(this IApplicationBuilder app, string documentTitle, bool useAuthorized = true)
         {
             if (useAuthorized)
-                app.UseSwaggerAuthorized();
+            {
+                //app.UseSwaggerAuthorized();
+                app.UseAuthorization();
+                app.UseAuthentication();
+            }
+
 
             app.UseSwagger();
 
@@ -31,9 +36,9 @@ namespace QD.Swagger.Extensions
             return app;
         }
 
-        internal static IApplicationBuilder UseSwaggerAuthorized(this IApplicationBuilder builder)
-        {
-            return builder.UseMiddleware<SwaggerAuthorizedMiddleware>();
-        }
+        //internal static IApplicationBuilder UseSwaggerAuthorized(this IApplicationBuilder builder)
+        //{
+        //    return builder.UseMiddleware<SwaggerAuthorizedMiddleware>();
+        //}
     }
 }

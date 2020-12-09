@@ -38,6 +38,9 @@ namespace QD.Swagger.Extensions
 
             services.AddControllers()
                   .AddNewtonsoftJson();
+
+            services.AddHttpContextAccessor();
+            services.AddTransient<IAuthorizedService, AuthorizedService>();
         }
     }
 }
